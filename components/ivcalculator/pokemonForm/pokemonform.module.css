@@ -1,0 +1,12 @@
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.data {
+    display: flex;
+    flex-direction: column;
+}
+.data p, .data h1 {
+    margin: 0;
+}

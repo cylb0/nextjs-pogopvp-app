@@ -1,0 +1,24 @@
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: green;
+}
+
+.input {
+    width: 50%;
+    height: 2rem;
+    box-sizing: border-box;
+}
+
+.list {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    list-style: none;
+    margin: 0;
+    padding: 5px;
+    width: 50%;
+}
