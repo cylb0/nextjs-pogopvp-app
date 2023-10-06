@@ -3,23 +3,23 @@
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-    margin: 3rem 0;
+    margin: 0;
 }
 
 .input {
     width: 50%;
     height: 2rem;
     box-sizing: border-box;
-    background-color: #050301;
+    background-color: #111111;
     border: 2px solid white;
     border-radius: 5px;
     text-align: center;
     font-size: 1rem;
-    color: lightgray;
+    color: #fff;
 }
 
 .input::placeholder {
-    color: dimgray;
+    color: 353839;
 }
 
 .input:focus {
@@ -30,6 +30,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
+    gap: 1px;
     top: 100%;
     left: 50%;
     transform: translate(-50%, 0);
@@ -39,9 +40,12 @@
 }
 
 .result {
-    border: 1px solid red;
+    background-color: dimgray;
+    border: 1px solid transparent;
+    border-radius: 5px;
     text-align: center;
     color: white;
     padding: 3px;
     font-size: 1rem;
+    text-decoration: none;
 }

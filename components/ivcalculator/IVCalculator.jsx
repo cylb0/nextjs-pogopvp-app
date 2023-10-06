@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react'
 import PokemonInput from './pokemonInput/PokemonInput'
 import PokemonForm from './pokemonForm/PokemonForm'
 import { useSearchParams } from 'next/navigation'
+import LeagueSelect from './leagueSelect/LeagueSelect'
+import style from './ivcalculator.module.css'
 
 export default function IVCalculator() {
 
+    const [error, setError] = useState(null)
     const [pokemons, setPokemons] = useState(null)
+    const [maxCp, setMaxCp] = useState(1500)
 
     const searchParams = useSearchParams();
     const selectedPokemonName = searchParams.get('pokemon')
@@ -29,7 +33,6 @@ export default function IVCalculator() {
     
     const forms = ['Normal', 'Alola', 'Galarian', 'Hisuian']
 
-    const [error, setError] = useState(null)
 
     useEffect(() => {
         if (pokemons === null) {
@@ -59,8 +62,12 @@ export default function IVCalculator() {
         return pokemons.filter((pokemon) => forms.includes(pokemon.form))
     }
 
+    const handleLeagueSelect = (max_cp) => {
+        setMaxCp(max_cp)
+    }
+
     return (
-        <>
+        <div className={style.container}>
             {
                 error ? 
                     (
@@ -82,9 +89,9 @@ export default function IVCalculator() {
                 selectedPokemon && (
                 <>
                     <PokemonForm pokemon={selectedPokemon}/>
-                    <div>OK</div>
+                    <LeagueSelect handleLeagueSelect={handleLeagueSelect}/>
                 </>
             )}
-        </>
+        </div>
     )
 }

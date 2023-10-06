@@ -14,6 +14,7 @@ export default function PokemonForm({ pokemon }) {
                 onError={(e) => {
                     e.target.src = "/images/missingno.png"
                 }}
+
             />
             <div className={style.data}>
                 <p>Selected Pokemon</p>
@@ -27,7 +28,6 @@ export default function PokemonForm({ pokemon }) {
                     }
                     { pokemon.pokemon_name } 
                 </h1>
-                <hr/>
                 <p>Base stats: 
                     Attack: <b><span>{ pokemon.base_attack }</span></b> |
                     Defense: <b><span>{ pokemon.base_defense }</span></b> |
