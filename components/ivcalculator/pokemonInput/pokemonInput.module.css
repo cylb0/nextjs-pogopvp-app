@@ -3,22 +3,45 @@
     display: flex;
     justify-content: center;
     box-sizing: border-box;
-    background-color: green;
+    margin: 3rem 0;
 }
 
 .input {
     width: 50%;
     height: 2rem;
     box-sizing: border-box;
+    background-color: #050301;
+    border: 2px solid white;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    color: lightgray;
 }
 
-.list {
+.input::placeholder {
+    color: dimgray;
+}
+
+.input:focus {
+    box-shadow: 0 0 10px white;
+}
+
+.results {
     position: absolute;
-    top: 2rem;
+    display: flex;
+    flex-direction: column;
+    top: 100%;
     left: 50%;
     transform: translate(-50%, 0);
-    list-style: none;
-    margin: 0;
-    padding: 5px;
+    padding: 2px 10px;
     width: 50%;
+    color: white;
+}
+
+.result {
+    border: 1px solid red;
+    text-align: center;
+    color: white;
+    padding: 3px;
+    font-size: 1rem;
 }

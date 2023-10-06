@@ -1,25 +1,28 @@
 import { useState } from "react"
 import style from './pokemonInput.module.css'
 
-export default function PokemonInput({ names, handleNameUpdate }) {
+export default function PokemonInput({ pokemons, handlePokemonSelect }) {
 
-    const [filteredList, setFilteredList] = useState([])
+    const [filteredList, setFilteredList] = useState(pokemons)
     const [inputText, setInputText] = useState("")
 
     const handleChange = (event) => {
+        console.log(filteredList)
         setInputText(event.target.value)
-        if (event.target.value.length > 1) {
+        if (event.target.value.length > 2) {
             const input = event.target.value
-            const filteredList = names.filter(name => name.toLowerCase().includes(input.toLowerCase()))
-            setFilteredList(filteredList)
+            const matchingPokemons = filteredList.filter(pokemon => (
+                pokemon.pokemon_name.toLowerCase().includes(input.toLowerCase())
+            ))
+            setFilteredList(matchingPokemons)
         } else {
-            setFilteredList([])
+            setFilteredList(pokemons)
         }
     }
 
-    const handleSelect = (name) => {
-        handleNameUpdate(name)
-        setFilteredList([])
+    const handleSelect = (pokemon) => {
+        handlePokemonSelect(pokemon)
+        setFilteredList(pokemons)
         setInputText('')
     }
 
@@ -35,21 +38,20 @@ export default function PokemonInput({ names, handleNameUpdate }) {
                 minLength="2"
                 value={inputText}
                 onChange={handleChange}
+                autoComplete="off"
             />
-            <ul 
-                role="listbox"
-                className={style.list}>
+            <div className={style.results}>
                 {
-                    filteredList.slice(0, 10).map(name => (
-                        <li 
-                            key={name}
-                            role="option"
-                            onClick={() => handleSelect(name)}>
-                            {name}
-                        </li>
+                    (inputText.length > 2) && filteredList.slice(0,10).map(pokemon => (
+                        <div 
+                            className={style.result}
+                            onClick={() => handleSelect(pokemon)}>
+                            <span>{pokemon.pokemon_name}</span>
+                            <span>{pokemon.form !== "Normal" && ' ' + pokemon.form}</span>
+                        </div>
                     ))
                 }
-            </ul>
+            </div>
         </div>
     )
 }
