@@ -1,11 +1,31 @@
 import { useEffect, useState } from 'react'
 import PokemonInput from './pokemonInput/PokemonInput'
 import PokemonForm from './pokemonForm/PokemonForm'
+import { useSearchParams } from 'next/navigation'
 
 export default function IVCalculator() {
 
     const [pokemons, setPokemons] = useState(null)
-    const [selectedPokemon, setSelectedPokemon] = useState(null)
+
+    const searchParams = useSearchParams();
+    const selectedPokemonName = searchParams.get('pokemon')
+    
+    let selectedPokemon = null
+    if(selectedPokemonName && pokemons) {
+        const [ name, form ] = selectedPokemonName.split('_')
+        console.log('name ',name ,'form ', form)
+        if (form === undefined) {
+            selectedPokemon = pokemons.find((pokemon) => (
+                pokemon.pokemon_name === name &&
+                pokemon.form === 'Normal'
+            ))
+        } else {
+            selectedPokemon = pokemons.find((pokemon) => (
+                pokemon.pokemon_name === name &&
+                pokemon.form === form
+            ))
+        }
+    }
     
     const forms = ['Normal', 'Alola', 'Galarian', 'Hisuian']
 
@@ -16,10 +36,6 @@ export default function IVCalculator() {
             fetchPokemons()
         }
     }, [])
-
-    useEffect(() => {
-        console.log(selectedPokemon)
-    },[selectedPokemon])
 
     const fetchPokemons = async () => {
         fetch('/resources/pokemon_stats.json')
@@ -43,17 +59,6 @@ export default function IVCalculator() {
         return pokemons.filter((pokemon) => forms.includes(pokemon.form))
     }
 
-    const handlePokemonSelect = (selectedPokemon) => {
-        const pokemon = pokemons.find((pokemon) => {
-            return (
-                pokemon.pokemon_name === selectedPokemon.pokemon_name &&
-                pokemon.form === selectedPokemon.form
-            )
-        })
-        setSelectedPokemon(pokemon)
-        console.log(pokemon)
-    }
-
     return (
         <>
             {
@@ -69,17 +74,17 @@ export default function IVCalculator() {
                                 pokemon_name,
                                 form,
                                 }))}
-                                handlePokemonSelect={handlePokemonSelect}
                             />
                         )
                     )
             }
             {
-                selectedPokemon && 
-                (
+                selectedPokemon && (
+                <>
                     <PokemonForm pokemon={selectedPokemon}/>
-                )
-            }
+                    <div>OK</div>
+                </>
+            )}
         </>
     )
 }

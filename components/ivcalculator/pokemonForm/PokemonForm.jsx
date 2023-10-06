@@ -11,6 +11,9 @@ export default function PokemonForm({ pokemon }) {
                 height={150}
                 alt={`Picture of ${pokemon.pokemon_name}`}
                 unoptimized={true}
+                onError={(e) => {
+                    e.target.src = "/images/missingno.png"
+                }}
             />
             <div className={style.data}>
                 <p>Selected Pokemon</p>

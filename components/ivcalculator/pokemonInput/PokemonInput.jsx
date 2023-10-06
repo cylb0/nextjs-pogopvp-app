@@ -1,7 +1,8 @@
 import { useState } from "react"
+import Link from 'next/link'
 import style from './pokemonInput.module.css'
 
-export default function PokemonInput({ pokemons, handlePokemonSelect }) {
+export default function PokemonInput({ pokemons }) {
 
     const [filteredList, setFilteredList] = useState(pokemons)
     const [inputText, setInputText] = useState("")
@@ -18,12 +19,6 @@ export default function PokemonInput({ pokemons, handlePokemonSelect }) {
         } else {
             setFilteredList(pokemons)
         }
-    }
-
-    const handleSelect = (pokemon) => {
-        handlePokemonSelect(pokemon)
-        setFilteredList(pokemons)
-        setInputText('')
     }
 
     return (
@@ -43,12 +38,17 @@ export default function PokemonInput({ pokemons, handlePokemonSelect }) {
             <div className={style.results}>
                 {
                     (inputText.length > 2) && filteredList.slice(0,10).map(pokemon => (
-                        <div 
+                        <Link 
                             className={style.result}
-                            onClick={() => handleSelect(pokemon)}>
+                            href={`?pokemon=${pokemon.pokemon_name}${pokemon.form !== 'Normal' ? `_${pokemon.form}` : ''}`}
+                            onClick={() => {
+                                setFilteredList(pokemons)
+                                setInputText('')
+                            }}
+                            >
                             <span>{pokemon.pokemon_name}</span>
                             <span>{pokemon.form !== "Normal" && ' ' + pokemon.form}</span>
-                        </div>
+                        </Link>
                     ))
                 }
             </div>
