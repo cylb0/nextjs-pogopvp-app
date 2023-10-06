@@ -5,7 +5,7 @@ export default function PokemonForm({ data }) {
     return (
         <div className={style.form}>
             <Image 
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.pokemon_id}.png`}
+                src={`https://projectpokemon.org/images/sprites-models/pgo-sprites/pm${data.pokemon_id}.${data.form !== 'Normal' ? 'f'+ data.form.toUpperCase() +'.' : ''}icon.png`}
                 width={150}
                 height={150}
                 alt={`Picture of ${data.pokemon_name}`}
