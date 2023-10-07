@@ -1,4 +1,50 @@
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.theme {
+    --picton-blue: #04b0ee;
+    --midgnight-green: #015463;
+    --dark-blue: #070753;
+    --darker-blue: #070739;
+    --transparent-black: rgba(0,0,0,0.2);
+}
 .container {
     padding: 3rem 0;
-    margin: 3rem 0;
+    border-radius: 10px;
+    position: relative;
+    background: linear-gradient(
+        to right,
+        var(--dark-blue),
+        var(--darker-blue),
+        var(--dark-blue));
+    box-shadow: 0 5px 5px var(--transparent-black);
+}
+
+.container::before,
+.container::after {
+    content: "";
+    position: absolute;
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        var(--gradient-angle),
+        var(--dark-blue),
+        var(--picton-blue),
+        var(--midgnight-green),
+        var(--dark-blue));
+    border-radius: inherit;
+    transform: translate(-2px,-2px);
+    animation: rotation 20s linear infinite;
+}
+.card::after {
+    filter: blur(3rem);
+}
+@keyframes rotation {
+    0% { --gradient-angle: 0deg; }
+    100% { --gradient-angle: 360deg; }
 }

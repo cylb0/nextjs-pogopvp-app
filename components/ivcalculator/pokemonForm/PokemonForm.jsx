@@ -2,6 +2,13 @@ import Image from 'next/image'
 import style from './pokemonform.module.css'
 
 export default function PokemonForm({ pokemon }) {
+
+    const forms = {
+        'Alola': 'Alolan form',
+        'Galarian': 'Galarian form',
+        'Hisuian': 'Hisuian form',
+        'Normal': ''
+    }
     
     return (
         <div className={style.form}>
@@ -18,16 +25,15 @@ export default function PokemonForm({ pokemon }) {
             />
             <div className={style.data}>
                 <p>Selected Pokemon</p>
-                <h1><span>#{pokemon.pokemon_id} </span>
-                    { 
-                        pokemon.form === 'Alola' ? 
-                        'Alolan ' :
-                            pokemon.form !== 'Normal' ?
-                            pokemon.form + ' ' :
-                                ''
-                    }
-                    { pokemon.pokemon_name } 
+                <h1>
+                    <span>#{ pokemon.pokemon_id } </span>
+                    <span>{ pokemon.pokemon_name }</span>
                 </h1>
+                <h5>
+                    { 
+                        forms[pokemon.form]
+                    }
+                </h5>
                 <p>Base stats: 
                     Attack: <b><span>{ pokemon.base_attack }</span></b> |
                     Defense: <b><span>{ pokemon.base_defense }</span></b> |

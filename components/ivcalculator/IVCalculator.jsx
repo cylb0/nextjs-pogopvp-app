@@ -67,7 +67,7 @@ export default function IVCalculator() {
     }
 
     return (
-        <div className={style.container}>
+        <div className={`${style.container} ${style.theme}`}>
             {
                 error ? 
                     (

@@ -1,20 +1,21 @@
 import styles from './navbar.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Navbar() {
     return (
         <nav className = { styles.navbar }>
-            <div>
+            <Link href="/">
                 <Image 
                     src = "/images/logo.png"
                     width = {120}
                     height = {60}
                     alt = "Logo pokemon go"
                 />
-            </div>
+            </Link>
             <ul className = { styles.list }>
-                <li>Home</li>
-                <li>PVP ivs</li>
+                <li><Link href="/">Home</Link></li>
+                <li><Link href="/ivs">PVP ivs</Link></li>
                 <li>About</li>
             </ul>
         </nav>

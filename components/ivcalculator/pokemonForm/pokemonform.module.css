@@ -7,10 +7,10 @@
     display: flex;
     flex-direction: column;
 }
-.data p, .data h1 {
+.data p, .data h1, .data h5 {
     margin: 0;
 }
-.data h1::after {
+.data h5::after {
     content: '';
     display: block;
     margin: 5px 0;

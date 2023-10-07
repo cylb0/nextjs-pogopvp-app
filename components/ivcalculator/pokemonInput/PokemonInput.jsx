@@ -13,7 +13,8 @@ export default function PokemonInput({ pokemons }) {
         if (event.target.value.length > 2) {
             const input = event.target.value
             const matchingPokemons = filteredList.filter(pokemon => (
-                pokemon.pokemon_name.toLowerCase().includes(input.toLowerCase())
+                pokemon.pokemon_name.toLowerCase().includes(input.toLowerCase()) ||
+                pokemon.form.toLowerCase().includes(input.toLowerCase())
             ))
             setFilteredList(matchingPokemons)
         } else {
@@ -46,8 +47,8 @@ export default function PokemonInput({ pokemons }) {
                                 setInputText('')
                             }}
                             >
-                            <span>{pokemon.pokemon_name}</span>
-                            <span>{pokemon.form !== "Normal" && ' ' + pokemon.form}</span>
+                            <span className={ style.name }>{pokemon.pokemon_name}</span>
+                            <span className={ style.form }>{pokemon.form !== "Normal" && ' ' + pokemon.form + ' form'}</span>
                         </Link>
                     ))
                 }

@@ -1,13 +1,13 @@
 .container {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 3px;
     height: 2rem;
 }
 
 .button {
     display: flex;
-    gap: 0.5rem;
+    gap: 5px;
     padding: 5px 5px;
     align-items: center;
     background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2));
