@@ -4,6 +4,7 @@ import PokemonForm from './pokemonForm/PokemonForm'
 import { useSearchParams } from 'next/navigation'
 import LeagueSelect from './leagueSelect/LeagueSelect'
 import style from './ivcalculator.module.css'
+import Table from './table/Table'
 
 export default function IVCalculator() {
 
@@ -88,8 +89,9 @@ export default function IVCalculator() {
             {
                 selectedPokemon && (
                 <>
-                    <PokemonForm pokemon={selectedPokemon}/>
-                    <LeagueSelect handleLeagueSelect={handleLeagueSelect}/>
+                    <PokemonForm pokemon={selectedPokemon} />
+                    <LeagueSelect handleLeagueSelect={handleLeagueSelect} />
+                    <Table />
                 </>
             )}
         </div>

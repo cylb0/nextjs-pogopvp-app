@@ -31,15 +31,15 @@
     width: calc(100% + 4px);
     inset: 0;
     z-index: -1;
-    background: linear-gradient(
-        var(--gradient-angle),
+    background: conic-gradient(
+        from var(--gradient-angle),
         var(--dark-blue),
         var(--picton-blue),
         var(--midgnight-green),
         var(--dark-blue));
     border-radius: inherit;
     transform: translate(-2px,-2px);
-    animation: rotation 20s linear infinite;
+    animation: rotation 8s linear infinite;
 }
 .card::after {
     filter: blur(3rem);

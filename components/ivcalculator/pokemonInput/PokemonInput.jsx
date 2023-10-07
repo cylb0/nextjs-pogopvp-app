@@ -7,6 +7,13 @@ export default function PokemonInput({ pokemons }) {
     const [filteredList, setFilteredList] = useState(pokemons)
     const [inputText, setInputText] = useState("")
 
+    const forms = {
+        'Alola': 'Alolan form',
+        'Galarian': 'Galarian form',
+        'Hisuian': 'Hisuian form',
+        'Normal': ''
+    }
+
     const handleChange = (event) => {
         console.log(filteredList)
         setInputText(event.target.value)
@@ -48,7 +55,7 @@ export default function PokemonInput({ pokemons }) {
                             }}
                             >
                             <span className={ style.name }>{pokemon.pokemon_name}</span>
-                            <span className={ style.form }>{pokemon.form !== "Normal" && ' ' + pokemon.form + ' form'}</span>
+                            <span className={ style.form }>{pokemon.form !== "Normal" && ' ' + forms[pokemon.form]}</span>
                         </Link>
                     ))
                 }
