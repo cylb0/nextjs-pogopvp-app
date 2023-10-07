@@ -2,9 +2,14 @@
     margin: 1rem auto;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .top {
     text-align: center;
+    padding-right: 0.2rem;
+}
+.count {
+    font-size: 0.8rem;
     padding-right: 1rem;
 }
 .button{

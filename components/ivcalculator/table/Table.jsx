@@ -3,13 +3,19 @@ import style from './table.module.css'
 import TableRow from './tablerow/TableRow'
 import * as PokemonStats from '../../../services/pokemonStats'
 import NumRowsSelect from './numrowsselect/NumRowsSelect'
+import LevelFloor from './levelfloor/LevelFloor'
 
 export default function Table({ attack, defense, stamina, maxCp }) {
 
     const [numRows, setNumRows] = useState(10)
+    const [levelFloor, setLevelFloor] = useState(1)
 
     const handleNumRowsChange = (value) => {
         setNumRows(value)
+    }
+
+    const handleLevelChange = (value) => {
+        setLevelFloor(value)
     }
 
     const tableRows = []
@@ -24,24 +30,28 @@ export default function Table({ attack, defense, stamina, maxCp }) {
 
                 const key = `${attack_iv}/${defense_iv}/${stamina_iv}`
                 const level = PokemonStats.calculateMaxLevel(attack_stat, defense_stat, stamina_stat, maxCp)
-                const cp = PokemonStats.calculateCP(attack_stat, defense_stat, stamina_stat, level)
-                const atk = PokemonStats.calculateAtk(attack_stat, level)
-                const def = PokemonStats.calculateDef(defense_stat, level)
-                const sta = Math.floor(PokemonStats.calculateSta(stamina_stat, level))
-                const prod = PokemonStats.calculateStatsProduct(atk, def, sta)
+                if (level >= levelFloor) {
+                    const cp = PokemonStats.calculateCP(attack_stat, defense_stat, stamina_stat, level)
+                    const atk = PokemonStats.calculateAtk(attack_stat, level)
+                    const def = PokemonStats.calculateDef(defense_stat, level)
+                    const sta = Math.floor(PokemonStats.calculateSta(stamina_stat, level))
+                    const prod = PokemonStats.calculateStatsProduct(atk, def, sta)
 
-                const data = {
-                    key: key,
-                    rank: '',
-                    ivs: key,
-                    level: level,
-                    cp: cp,
-                    atk: atk.toFixed(2),
-                    def: def.toFixed(2),
-                    sta: sta.toFixed(0),
-                    prod: Math.round(prod)
+                    const data = {
+                        key: key,
+                        rank: '',
+                        ivs: key,
+                        level: level,
+                        cp: cp,
+                        atk: atk.toFixed(2),
+                        def: def.toFixed(2),
+                        sta: sta.toFixed(0),
+                        prod: Math.round(prod)
+                    }
+                    tableRows.push(data)
+                } else {
+                    break
                 }
-                tableRows.push(data)
             }
         }
     }
@@ -53,7 +63,13 @@ export default function Table({ attack, defense, stamina, maxCp }) {
 
     return (
         <>
-            <NumRowsSelect numRows={numRows} handleNumRowsChange={handleNumRowsChange} />
+            <NumRowsSelect 
+                numRows={numRows} 
+                maxRows={tableRows.length} 
+                handleNumRowsChange={handleNumRowsChange} />
+            <LevelFloor 
+                levelFloor={levelFloor} 
+                handleLevelChange={handleLevelChange} />
             <table className={style.table}>
                 <thead className={style.thead}>
                     <tr>
