@@ -10,7 +10,7 @@ export default function IVCalculator() {
 
     const [error, setError] = useState(null)
     const [pokemons, setPokemons] = useState(null)
-    const [maxCp, setMaxCp] = useState(1500)
+    const [maxCp, setMaxCp] = useState(null)
 
     const searchParams = useSearchParams();
     const selectedPokemonName = searchParams.get('pokemon')
@@ -18,7 +18,6 @@ export default function IVCalculator() {
     let selectedPokemon = null
     if(selectedPokemonName && pokemons) {
         const [ name, form ] = selectedPokemonName.split('_')
-        console.log('name ',name ,'form ', form)
         if (form === undefined) {
             selectedPokemon = pokemons.find((pokemon) => (
                 pokemon.pokemon_name === name &&
@@ -63,8 +62,8 @@ export default function IVCalculator() {
         return pokemons.filter((pokemon) => forms.includes(pokemon.form))
     }
 
-    const handleLeagueSelect = (max_cp) => {
-        setMaxCp(max_cp)
+    const handleLeagueSelect = (maxCp) => {
+        setMaxCp(maxCp)
     }
 
     return (
@@ -91,9 +90,17 @@ export default function IVCalculator() {
                 <>
                     <PokemonForm pokemon={selectedPokemon} />
                     <LeagueSelect handleLeagueSelect={handleLeagueSelect} />
-                    <Table />
                 </>
             )}
+            {
+                maxCp && (
+                    <Table 
+                        attack={ selectedPokemon.base_attack }
+                        defense={ selectedPokemon.base_defense }
+                        stamina={ selectedPokemon.base_stamina }
+                        maxCp={ maxCp }/>
+                )
+            }
         </div>
     )
 }
