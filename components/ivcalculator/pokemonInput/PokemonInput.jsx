@@ -15,17 +15,17 @@ export default function PokemonInput({ pokemons }) {
     }
 
     const handleChange = (event) => {
-        console.log(filteredList)
         setInputText(event.target.value)
-        if (event.target.value.length > 2) {
-            const input = event.target.value
-            const matchingPokemons = filteredList.filter(pokemon => (
-                pokemon.pokemon_name.toLowerCase().includes(input.toLowerCase()) ||
-                pokemon.form.toLowerCase().includes(input.toLowerCase())
+
+        if (inputText.length > 2) {
+            const input = event.target.value.toLowerCase()
+            const matchingPokemons = pokemons.filter(pokemon => (
+                pokemon.pokemon_name.toLowerCase().includes(input) ||
+                pokemon.form.toLowerCase().includes(input)
             ))
             setFilteredList(matchingPokemons)
         } else {
-            setFilteredList(pokemons)
+            setFilteredList([])
         }
     }
 
@@ -47,6 +47,7 @@ export default function PokemonInput({ pokemons }) {
                 {
                     (inputText.length > 2) && filteredList.slice(0,10).map(pokemon => (
                         <Link 
+                            key={pokemon.pokemon_id + '_' + pokemon.form}
                             className={style.result}
                             href={`?pokemon=${pokemon.pokemon_name}${pokemon.form !== 'Normal' ? `_${pokemon.form}` : ''}`}
                             onClick={() => {
