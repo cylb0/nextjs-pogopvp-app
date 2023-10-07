@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './table.module.css'
 import TableRow from './tablerow/TableRow'
 import * as PokemonStats from '../../../services/pokemonStats'

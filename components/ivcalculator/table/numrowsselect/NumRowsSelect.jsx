@@ -3,7 +3,7 @@ import style from './numrowsselect.module.css'
 
 export default function NumRowsSelect({ numRows, maxRows, handleNumRowsChange }) {
 
-    const buttonValues = [10, 25, 50, 100]
+    const buttonValues = [10, 25, 50, 100, maxRows]
 
     const handleChange = (value) => {
         handleNumRowsChange(value)
@@ -11,7 +11,7 @@ export default function NumRowsSelect({ numRows, maxRows, handleNumRowsChange })
 
     return (
         <div className={style.container}>
-            <span className={style.top}>TOP</span>
+            <span className={style.top}>TOP {numRows}</span>
             <span className={style.count}>(of {maxRows})</span>
             <div className={style.buttons}>
                 {
