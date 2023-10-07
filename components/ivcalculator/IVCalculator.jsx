@@ -49,11 +49,9 @@ export default function IVCalculator() {
             return res.json()
         })
         .then((json) => {
-            console.log('pokemons', json)
             setPokemons(filterPokemons(json))
         })
         .catch((error) => {
-            console.log('error : ', error)
             setError(error.message)
         })
     }
@@ -75,13 +73,16 @@ export default function IVCalculator() {
                     ) : 
                     (
                         pokemons && (
-                            <PokemonInput
-                                pokemons={pokemons.map(({ pokemon_id, pokemon_name, form }) => ({
-                                pokemon_id,
-                                pokemon_name,
-                                form,
-                                }))}
-                            />
+                            <>
+                                <h1 className={style.title}>PVP IV ranking</h1>
+                                <PokemonInput
+                                    pokemons={pokemons.map(({ pokemon_id, pokemon_name, form }) => ({
+                                    pokemon_id,
+                                    pokemon_name,
+                                    form,
+                                    }))}
+                                />
+                            </>
                         )
                     )
             }
@@ -89,7 +90,9 @@ export default function IVCalculator() {
                 selectedPokemon && (
                 <>
                     <PokemonForm pokemon={selectedPokemon} />
-                    <LeagueSelect handleLeagueSelect={handleLeagueSelect} />
+                    <LeagueSelect 
+                        handleLeagueSelect={handleLeagueSelect}
+                        maxCp={maxCp} />
                 </>
             )}
             {
@@ -98,7 +101,7 @@ export default function IVCalculator() {
                         attack={ selectedPokemon.base_attack }
                         defense={ selectedPokemon.base_defense }
                         stamina={ selectedPokemon.base_stamina }
-                        maxCp={ maxCp }/>
+                        maxCp={ maxCp } />
                 )
             }
         </div>

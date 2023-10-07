@@ -12,7 +12,7 @@
     --transparent-black: rgba(0,0,0,0.2);
 }
 .container {
-    padding: 3rem 1rem;
+    padding: 1rem 0 3rem 0;
     border-radius: 10px;
     position: relative;
     background: linear-gradient(
@@ -47,4 +47,8 @@
 @keyframes rotation {
     0% { --gradient-angle: 0deg; }
     100% { --gradient-angle: 360deg; }
+}
+
+.title {
+    text-align: center;
 }

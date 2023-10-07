@@ -1,8 +1,16 @@
+import { useState } from 'react'
 import style from './table.module.css'
 import TableRow from './tablerow/TableRow'
 import * as PokemonStats from '../../../services/pokemonStats'
+import NumRowsSelect from './numrowsselect/NumRowsSelect'
 
 export default function Table({ attack, defense, stamina, maxCp }) {
+
+    const [numRows, setNumRows] = useState(10)
+
+    const handleNumRowsChange = (value) => {
+        setNumRows(value)
+    }
 
     const tableRows = []
 
@@ -45,6 +53,7 @@ export default function Table({ attack, defense, stamina, maxCp }) {
 
     return (
         <>
+            <NumRowsSelect numRows={numRows} handleNumRowsChange={handleNumRowsChange} />
             <table className={style.table}>
                 <thead className={style.thead}>
                     <tr>
@@ -59,7 +68,7 @@ export default function Table({ attack, defense, stamina, maxCp }) {
                     </tr>
                 </thead>
                 <tbody>
-                    { tableRows.map((row) => (
+                    { tableRows.slice(0, numRows).map((row) => (
                         <TableRow key={row.ivs} data={row} />
                     )) }
                 </tbody>

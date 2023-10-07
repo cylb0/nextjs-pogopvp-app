@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import style from './leagueSelect.module.css'
 
-export default function LeagueSelect({ handleLeagueSelect }) {
+export default function LeagueSelect({ handleLeagueSelect, maxCp }) {
 
     const leagues = {
         "Great league": {
@@ -23,7 +23,7 @@ export default function LeagueSelect({ handleLeagueSelect }) {
             {
                 Object.keys(leagues).map((league) => (
                     <button
-                        className={style.button}
+                        className={`${style.button} ${leagues[league].max_cp === maxCp ? style.selected : ''}`}
                         key={league}
                         onClick={() => {
                             handleLeagueSelect(leagues[league].max_cp)}}>
