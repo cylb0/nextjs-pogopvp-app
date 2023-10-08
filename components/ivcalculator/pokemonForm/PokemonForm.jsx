@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import style from './pokemonform.module.css'
+import Evolutions from './evolutions/Evolutions'
 
 export default function PokemonForm({ pokemon }) {
 
@@ -39,6 +40,7 @@ export default function PokemonForm({ pokemon }) {
                     Defense: <b><span>{ pokemon.base_defense }</span></b> |
                     Stamina: <b><span>{ pokemon.base_stamina }</span></b>
                 </p>
+                <Evolutions pokemon={ pokemon }/>
             </div>
         </div>
     )
