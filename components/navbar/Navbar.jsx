@@ -14,7 +14,6 @@ export default function Navbar() {
                 />
             </Link>
             <ul className = { styles.list }>
-                <li><Link href="/">Home</Link></li>
                 <li><Link href="/ivs">PVP ivs</Link></li>
                 <li>About</li>
             </ul>
