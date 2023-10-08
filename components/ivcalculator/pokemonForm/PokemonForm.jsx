@@ -19,6 +19,7 @@ export default function PokemonForm({ pokemon }) {
                 height={150}
                 alt={`Picture of ${pokemon.pokemon_name}`}
                 unoptimized={true}
+                priority={true}
                 onError={(e) => {
                     e.target.src = "/images/missingno.png"
                 }}

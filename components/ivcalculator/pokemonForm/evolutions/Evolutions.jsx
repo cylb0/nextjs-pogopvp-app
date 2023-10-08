@@ -20,6 +20,7 @@ export default function Evolutions({ pokemon }) {
                             height={75}
                             alt={`Picture of ${pokemon.pokemon_name}`}
                             unoptimized={true}
+                            priority={true}
                             onError={(e) => {
                                 e.target.src = "/images/missingno.png"
                             }}
