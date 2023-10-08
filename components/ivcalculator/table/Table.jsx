@@ -4,11 +4,15 @@ import TableRow from './tablerow/TableRow'
 import * as PokemonStats from '../../../services/pokemonStats'
 import NumRowsSelect from './numrowsselect/NumRowsSelect'
 import LevelFloor from './levelfloor/LevelFloor'
+import IVSelect from './ivselect/IVSelect'
 
 export default function Table({ attack, defense, stamina, maxCp }) {
 
     const [numRows, setNumRows] = useState(10)
     const [levelFloor, setLevelFloor] = useState(1)
+    const [attackIv, setAttackIv] = useState('')
+    const [defenseIv, setDefenseIv] = useState(15)
+    const [staminaIv, setStaminaIv] = useState(15)
 
     const handleNumRowsChange = (value) => {
         setNumRows(value)
@@ -16,6 +20,22 @@ export default function Table({ attack, defense, stamina, maxCp }) {
 
     const handleLevelChange = (value) => {
         setLevelFloor(value)
+    }
+
+    const handleIvChange = (prop, value) => {
+        switch (prop) {
+            case 'attackIv':
+                setAttackIv(value)
+                break
+            case 'defenseIv':
+                setDefenseIv(value)
+                break
+            case 'staminaIv':
+                setStaminaIv(value)
+                break
+            default:
+                break
+        }
     }
 
     const tableRows = []
@@ -70,6 +90,11 @@ export default function Table({ attack, defense, stamina, maxCp }) {
             <LevelFloor 
                 levelFloor={levelFloor} 
                 handleLevelChange={handleLevelChange} />
+            <IVSelect 
+                attackIv={attackIv}
+                defenseIv={defenseIv}
+                staminaIv={staminaIv}
+                handleIvChange={handleIvChange} />
             <table className={style.table}>
                 <thead className={style.thead}>
                     <tr>
@@ -84,9 +109,24 @@ export default function Table({ attack, defense, stamina, maxCp }) {
                     </tr>
                 </thead>
                 <tbody>
-                    { tableRows.slice(0, numRows).map((row) => (
-                        <TableRow key={row.ivs} data={row} />
-                    )) }
+                    {
+                        attackIv && defenseIv && staminaIv ? (
+                            tableRows.map((row) => {
+                                const [aIv, dIv, sIv] = row.ivs.split('/')
+                                if (attackIv == aIv && defenseIv == dIv && staminaIv == sIv) {
+                                    return (
+                                        <TableRow key={'selected'} data={{...row, selected: true}} />
+                                    )
+                                }
+                                return null
+                            })
+                         ) : null
+                    }
+                    { 
+                        tableRows.slice(0, numRows).map((row) => (
+                            <TableRow key={row.ivs} data={row} />
+                        ))
+                    }
                 </tbody>
             </table>
         </>

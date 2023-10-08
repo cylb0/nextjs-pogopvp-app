@@ -2,7 +2,7 @@ import style from './tablerow.module.css'
 
 export default function TableRow({ data }) {
     return (
-        <tr className={style.tr}>
+        <tr className={`${style.tr} ${data.selected ? style.selected : ''}`}>
             <td>{ data.rank }</td>
             <td>{ data.ivs }</td>
             <td>{ data.level }</td>
