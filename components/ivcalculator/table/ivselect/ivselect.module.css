@@ -4,21 +4,34 @@
     display: flex;
     justify-content: center;
 }
+.title {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-right: 1rem;
+}
 .iv {
-    margin: 0 1rem;
+    margin: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 .input {
-    width: 2rem;
-    height: 2rem;
-    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 1rem;
+    margin: auto;
     border: 1px solid white;
     border-radius: 10px;
     text-align: start;
     padding-left: 1rem;
     background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2));
 }
-.select option {
-    color: black;
-    font-weight: bold;
-    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2));
+.input:hover {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
+    box-shadow: 0 0 10px white;
+}
+.input label {
+    text-align: center;
 }

@@ -21,6 +21,7 @@ export default function IVSelect({ attackIv, defenseIv, staminaIv, handleIvChang
 
     return (
         <div className={style.container}>
+            <span className={style.title}>Search Individual Values</span>
             <div className={style.iv}>
                 <label htmlFor="attackIv">Attack</label>
                 <input

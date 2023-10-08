@@ -25,3 +25,8 @@
     font-weight: bold;
     background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2));
 }
+.select:hover {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
+    transform: translateY(-1px);
+    box-shadow: 0 0 10px white;
+}
