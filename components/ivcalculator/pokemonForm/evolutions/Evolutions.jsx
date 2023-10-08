@@ -6,13 +6,13 @@ import style from './evolutions.module.css'
 export default function Evolutions({ pokemon }) {
 
     const evolutions = getEvolutions(pokemon)
-    console.log('evolutions: ',evolutions)
 
     return (
         <div className={style.container}>
             {
                 evolutions && evolutions.map((evolution) => (
                     <Link
+                        key={evolution.pokemon_name+evolution.form}
                         href={`/?pokemon=${evolution.pokemon_name}${evolution.form !== 'Normal' ? '_' + evolution.form : ''}`}>
                         <Image 
                             src={`https://projectpokemon.org/images/sprites-models/pgo-sprites/pm${evolution.pokemon_id}.${evolution.form !== 'Normal' ? 'f'+ pokemon.form.toUpperCase() +'.' : ''}icon.png`}
