@@ -17,7 +17,7 @@ export default function PokemonInput({ pokemons }) {
     const handleChange = (event) => {
         setInputText(event.target.value)
 
-        if (inputText.length > 2) {
+        if (event.target.value.length > 2) {
             const input = event.target.value.toLowerCase()
             const matchingPokemons = pokemons.filter(pokemon => (
                 pokemon.pokemon_name.toLowerCase().includes(input) ||

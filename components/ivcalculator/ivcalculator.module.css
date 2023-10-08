@@ -39,7 +39,7 @@
         var(--dark-blue));
     border-radius: inherit;
     transform: translate(-2px,-2px);
-    animation: rotation 8s linear infinite;
+    animation: rotation 5s linear infinite;
 }
 .card::after {
     filter: blur(3rem);
