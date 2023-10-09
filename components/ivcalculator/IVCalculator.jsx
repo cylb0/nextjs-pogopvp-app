@@ -5,6 +5,8 @@ import { useSearchParams } from 'next/navigation'
 import LeagueSelect from './leagueSelect/LeagueSelect'
 import style from './ivcalculator.module.css'
 import Table from './table/Table'
+import types from './../../public/resources/pokemon_types.json'
+import { comparePokemons } from '../../services/pokemonMiscellaneous'
 
 export default function IVCalculator() {
 
@@ -14,6 +16,26 @@ export default function IVCalculator() {
     const [maxCp, setMaxCp] = useState(null)
 
     const forms = ['Normal', 'Alola', 'Galarian', 'Hisuian']
+    const typeColors = {
+        Bug: "#aec92c",
+        Dark: "#6e7681",
+        Dragon: "#067fc4",
+        Electric: "#fedf6b",
+        Fairy: "#f6a7e8",
+        Fighting: "#e34448",
+        Fire: "#feb04b",
+        Flying: "#a7c1f2",
+        Ghost: "#7571d0",
+        Grass: "#59c079",
+        Ground: "#d2976b",
+        Ice: "#94ddd6",
+        Normal: "#a3a49e",
+        Poison: "#a662c7",
+        Psychic: "#fda194",
+        Rock: "#d7cd90",
+        Steel: "#5aafb4",
+        Water: "#6ac7e9"
+    }
 
     const searchParams = useSearchParams();
     const selectedPokemonName = searchParams.get('pokemon') 
@@ -97,6 +119,13 @@ export default function IVCalculator() {
         setMaxCp(maxCp)
     }
 
+    const mergeTypes = (pokemon) => {
+        if (!pokemon.mega_name) {
+            const matchingTypes = types.find((pkm) => comparePokemons(pokemon, pkm))
+            return {...pokemon, type: matchingTypes ? matchingTypes.type : []}
+        }
+    }
+
     return (
         <div className={`${style.container} ${style.theme}`}>
             {
@@ -109,7 +138,11 @@ export default function IVCalculator() {
                             <>
                                 <h1 className={style.title}>PVP IV ranking</h1>
                                 <PokemonInput
-                                    pokemons={pokemons.concat(megas)}
+                                    // pokemons={pokemons.concat(megas)}
+                                    pokemons={pokemons.map((pokemon) => {
+                                        return mergeTypes(pokemon)
+                                    }).concat(megas)}
+                                    colors={typeColors}
                                 />
                             </>
                         )

@@ -3,7 +3,10 @@ import Link from 'next/link'
 import style from './pokemonInput.module.css'
 import { buildPokemonLinkURL } from "../../../services/pokemonMiscellaneous"
 
-export default function PokemonInput({ pokemons }) {
+export default function PokemonInput({ pokemons, colors }) {
+    
+    console.log(colors)
+    console.log(pokemons)
 
     const [filteredList, setFilteredList] = useState(pokemons)
     const [inputText, setInputText] = useState("")
@@ -46,8 +49,23 @@ export default function PokemonInput({ pokemons }) {
             />
             <div className={style.results}>
                 {
-                    (inputText.length > 2) && filteredList.slice(0,10).map((pokemon, index) => (
-                        <Link 
+                    (inputText.length > 2) && filteredList.slice(0,10).map((pokemon, index) => {
+
+                        let bgStyle
+                        if (pokemon.type.length === 1) {
+                            const bgColor = colors[pokemon.type[0]]
+                            bgStyle = {
+                                backgroundColor: bgColor
+                            }
+                        } else if (pokemon.type.length === 2) {
+                            const bgColor1 = colors[pokemon.type[0]]
+                            const bgColor2 = colors[pokemon.type[1]]
+                            bgStyle = {
+                                backgroundImage: `linear-gradient(90deg, ${bgColor1}, ${bgColor2})`
+                            }
+                        }
+
+                        return <Link 
                             key={index}
                             className={style.result}
                             href={buildPokemonLinkURL(pokemon)}
@@ -55,6 +73,7 @@ export default function PokemonInput({ pokemons }) {
                                 setFilteredList(pokemons)
                                 setInputText('')
                             }}
+                            style={ bgStyle }
                             >
                             <span className={ style.name }>{pokemon.mega_name ? pokemon.mega_name : pokemon.pokemon_name}</span>
                             <span className={ style.form }>
@@ -65,7 +84,7 @@ export default function PokemonInput({ pokemons }) {
                                 }
                             </span>
                         </Link>
-                    ))
+                    })
                 }
             </div>
         </div>
