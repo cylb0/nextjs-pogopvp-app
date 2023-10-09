@@ -125,7 +125,7 @@ export default function IVCalculator() {
                 </>
             )}
             {
-                maxCp && (
+                selectedPokemon && maxCp && (
                     <Table 
                         attack={ selectedPokemon.mega_name ? selectedPokemon.stats.base_attack : selectedPokemon.base_attack }
                         defense={ selectedPokemon.mega_name ? selectedPokemon.stats.base_defense : selectedPokemon.base_defense }

@@ -2,4 +2,16 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin: 1rem 0
+}
+.link {
+    margin-left: '1rem';
+    border: 1px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.link:hover {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
+    transform: translateY(-1px);
+    box-shadow: 0 0 10px white;
 }

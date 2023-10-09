@@ -1,25 +1,21 @@
 export function buildSpriteURL(pokemon) {
-    let url = 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/Addressable%20Assets/pm'
-    url += pokemon.pokemon_id
-
-    if (pokemon.mega_name) {
-        url += '.fMEGA'
-        url += pokemon.form !== 'Normal' ? '_' + pokemon.form : ''
-    } else {
-        url += pokemon.form !== 'Normal' ? '.f' + pokemon.form.toUpperCase() : ''
-    }
-    url += '.icon.png'
-    return url
+    const base = 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/Addressable%20Assets/pm';
+    const isMega = pokemon.mega_name;
+    const form = pokemon.form !== 'Normal' ? (isMega ? `_${pokemon.form}` : `.f${pokemon.form.toUpperCase()}`) : '';
+    return `${base}${pokemon.pokemon_id}${isMega ? '.fMEGA' : ''}${form}.icon.png`;
 }
 
 export function buildPokemonLinkURL(pokemon) {
-    let url =  '/?pokemon=' + (pokemon.mega_name ? 'MEGA_' : '')
-
-    url += pokemon.pokemon_name
-    
-    url += pokemon.form !== 'Normal' ? '_' + pokemon.form : ''
-
-    return url
+    const base = '/?pokemon='
+    const isMega = pokemon.mega_name
+    const form = pokemon.form !== 'Normal' ? `_${pokemon.form}` : ''
+    return `${base}${isMega ? 'MEGA_' : ''}${pokemon.pokemon_name}${form}`
 }
 
-// href={`?pokemon=${pokemon.pokemon_name}${pokemon.form !== 'Normal' ? `_${pokemon.form}` : ''}`}
+export function comparePokemons(pkm1, pkm2) {
+    return (
+        pkm1.mega_name === pkm2.mega_name &&
+        pkm1.pokemon_id === pkm2.pokemon_id &&
+        pkm1.form === pkm2.form
+    )
+}

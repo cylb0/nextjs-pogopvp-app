@@ -11,10 +11,11 @@ export default function Navbar() {
                     width = {120}
                     height = {60}
                     alt = "Logo pokemon go"
+                    priority = {true}
                 />
             </Link>
             <ul className = { styles.list }>
-                <li><Link href="/ivs">PVP ivs</Link></li>
+                <li><Link href="/">PVP ivs</Link></li>
                 <li>About</li>
             </ul>
         </nav>
