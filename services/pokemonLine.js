@@ -1,4 +1,5 @@
 const data = require('./../public/resources/pokemon_evolutions.json')
+const megas = require('./../public/resources/mega_pokemon.json')
 
 export function getEvolutions(pokemon) {
 
@@ -25,9 +26,18 @@ export function getEvolutions(pokemon) {
             }
         })
     }
+
+    const findMegas = (poke) => {
+        megas.forEach((pkm) => {
+            if (pkm.pokemon_id == poke.pokemon_id) {
+                evolutionLine.push(pkm)
+            }
+        })
+    }
     
     findEvolutions(pokemon)
     findPrevolutions(pokemon)
+    findMegas(pokemon)
 
     return evolutionLine
 }
