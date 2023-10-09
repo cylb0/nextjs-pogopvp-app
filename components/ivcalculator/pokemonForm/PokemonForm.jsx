@@ -10,21 +10,29 @@ export default function PokemonForm({ pokemon }) {
         'Hisuian': 'Hisuian form',
         'Normal': ''
     }
+
+    const addZeros = (number) => {
+        const str = number.toString()
+        const zerosCount = Math.max(0, 3 - str.length)
+        return '0'.repeat(zerosCount) + str
+    }
     
     return (
         <div className={style.form}>
-            <Image 
-                src={`https://projectpokemon.org/images/sprites-models/pgo-sprites/pm${pokemon.pokemon_id}.${pokemon.form !== 'Normal' ? 'f'+ pokemon.form.toUpperCase() +'.' : ''}icon.png`}
-                width={150}
-                height={150}
-                alt={`Picture of ${pokemon.pokemon_name}`}
-                unoptimized={true}
-                priority={true}
-                onError={(e) => {
-                    e.target.src = "/images/missingno.png"
-                }}
+            <div style={{ width: '100px', height: '100px', display: 'inline-block' }}>
+                <Image 
+                    src={`https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/Addressable%20Assets/pm${pokemon.pokemon_id}${pokemon.form !== 'Normal' ? '.f' + pokemon.form.toUpperCase() : ''}.icon.png`}
+                    width={100}
+                    height={100}
+                    alt={`Picture of ${pokemon.pokemon_name}`}
+                    unoptimized={true}
+                    priority={true}
+                    onError={(e) => {
+                        e.target.src = "/images/missingno.png"
+                    }}
 
-            />
+                />
+            </div>
             <div className={style.data}>
                 <p>Selected Pokemon</p>
                 <h1>
