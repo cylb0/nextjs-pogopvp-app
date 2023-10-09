@@ -123,9 +123,13 @@ export default function Table({ attack, defense, stamina, maxCp }) {
                          ) : null
                     }
                     { 
+                        tableRows.length ? 
                         tableRows.slice(0, numRows).map((row) => (
                             <TableRow key={row.ivs} data={row} />
-                        ))
+                        )) : 
+                        <tr>
+                            <td colSpan={8} style={{ textAlign:'center' }}>No results</td>
+                        </tr>
                     }
                 </tbody>
             </table>

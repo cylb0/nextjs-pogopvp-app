@@ -5,6 +5,8 @@ import { buildSpriteURL } from '../../../services/pokemonMiscellaneous'
 
 export default function PokemonForm({ pokemon }) {
 
+    console.log(buildSpriteURL(pokemon))
+
     const forms = {
         'Alola': 'Alolan form',
         'Galarian': 'Galarian form',
@@ -32,7 +34,7 @@ export default function PokemonForm({ pokemon }) {
                 <p>Selected Pokemon</p>
                 <h1>
                     <span>#{ pokemon.pokemon_id } </span>
-                    <span>{ pokemon.pokemon_name }</span>
+                    <span>{ pokemon.mega_name ? pokemon.mega_name : pokemon.pokemon_name }</span>
                 </h1>
                 <h5>
                     { 
@@ -40,9 +42,9 @@ export default function PokemonForm({ pokemon }) {
                     }
                 </h5>
                 <p>Base stats: 
-                    Attack: <b><span>{ pokemon.base_attack }</span></b> |
-                    Defense: <b><span>{ pokemon.base_defense }</span></b> |
-                    Stamina: <b><span>{ pokemon.base_stamina }</span></b>
+                    Attack: <b><span>{ pokemon.mega_name ? pokemon.stats.base_attack : pokemon.base_attack }</span></b> |
+                    Defense: <b><span>{ pokemon.mega_name ? pokemon.stats.base_defense : pokemon.base_defense }</span></b> |
+                    Stamina: <b><span>{ pokemon.mega_name ? pokemon.stats.base_stamina : pokemon.base_stamina }</span></b>
                 </p>
                 <Evolutions pokemon={ pokemon }/>
             </div>

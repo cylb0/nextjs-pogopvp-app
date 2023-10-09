@@ -2,7 +2,7 @@ import { getEvolutions } from './../../../../services/pokemonLine.js'
 import Image from 'next/image'
 import Link from 'next/link'
 import style from './evolutions.module.css'
-import { buildSpriteURL } from '../../../../services/pokemonMiscellaneous.js'
+import { buildSpriteURL, buildPokemonLinkURL } from '../../../../services/pokemonMiscellaneous.js'
 
 export default function Evolutions({ pokemon }) {
 
@@ -14,7 +14,7 @@ export default function Evolutions({ pokemon }) {
                 evolutions && evolutions.length > 1 && evolutions.map((evolution, index) => (
                     <Link
                         key={index}
-                        href={`/?pokemon=${evolution.pokemon_name}${evolution.form !== 'Normal' ? '_' + evolution.form : ''}`}>
+                        href={buildPokemonLinkURL(evolution)}>
                         <div style={{ width: '60px', height: '60px', display: 'inline-block' }}>
                             <Image 
                                 src={buildSpriteURL(evolution)}

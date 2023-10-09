@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Link from 'next/link'
 import style from './pokemonInput.module.css'
+import { buildPokemonLinkURL } from "../../../services/pokemonMiscellaneous"
 
 export default function PokemonInput({ pokemons }) {
 
@@ -45,18 +46,24 @@ export default function PokemonInput({ pokemons }) {
             />
             <div className={style.results}>
                 {
-                    (inputText.length > 2) && filteredList.slice(0,10).map(pokemon => (
+                    (inputText.length > 2) && filteredList.slice(0,10).map((pokemon, index) => (
                         <Link 
-                            key={pokemon.pokemon_id + '_' + pokemon.form}
+                            key={index}
                             className={style.result}
-                            href={`?pokemon=${pokemon.pokemon_name}${pokemon.form !== 'Normal' ? `_${pokemon.form}` : ''}`}
+                            href={buildPokemonLinkURL(pokemon)}
                             onClick={() => {
                                 setFilteredList(pokemons)
                                 setInputText('')
                             }}
                             >
-                            <span className={ style.name }>{pokemon.pokemon_name}</span>
-                            <span className={ style.form }>{pokemon.form !== "Normal" && ' ' + forms[pokemon.form]}</span>
+                            <span className={ style.name }>{pokemon.mega_name ? pokemon.mega_name : pokemon.pokemon_name}</span>
+                            <span className={ style.form }>
+                                {
+                                    pokemon.mega_name ? 
+                                    '' :
+                                        pokemon.form !== 'Normal' && ' ' + forms[pokemon.form]
+                                }
+                            </span>
                         </Link>
                     ))
                 }
