@@ -1,7 +1,15 @@
 const data = require('./../public/resources/pokemon_evolutions.json')
+const pokemons = require('./../public/resources/pokemon_stats.json')
 const megas = require('./../public/resources/mega_pokemon.json')
 
 export function getEvolutions(pokemon) {
+
+    const pk = pokemon
+    if (pk.mega_name) {
+        pokemon = pokemons.find((pokemon) => (
+            pokemon.pokemon_id === pk.pokemon_id && pokemon.form === 'Normal'
+        ))
+    }
 
     const evolutionLine = [pokemon]
 
@@ -27,17 +35,19 @@ export function getEvolutions(pokemon) {
         })
     }
 
-    const findMegas = (poke) => {
-        megas.forEach((pkm) => {
-            if (pkm.pokemon_id == poke.pokemon_id) {
-                evolutionLine.push(pkm)
-            }
+    const findMegas = () => {
+        evolutionLine.forEach((pokemon) => {
+            megas.forEach((mega) => {
+                if (!pokemon.mega_name && pokemon.pokemon_id == mega.pokemon_id) {
+                    evolutionLine.push(mega)
+                }
+            })
         })
     }
     
     findEvolutions(pokemon)
     findPrevolutions(pokemon)
-    findMegas(pokemon)
+    findMegas()
 
     return evolutionLine
 }

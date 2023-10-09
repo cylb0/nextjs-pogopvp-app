@@ -27,11 +27,7 @@ export default function IVCalculator() {
     }, [])
 
     if(selectedPokemonName && pokemons && megas) {
-        console.log('pokemon:',pokemons)
-        console.log('megas:',megas)
-
         const selected = selectedPokemonName.split('_')
-        console.log(selected)
 
         if (selected[0] === 'MEGA') {
             if (selected.length === 2) {
@@ -58,7 +54,6 @@ export default function IVCalculator() {
                 ))
             }
         }
-        console.log('selected:',selectedPokemon)
     }
     
 
