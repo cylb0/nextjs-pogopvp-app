@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 1rem;
 }
 .mention {
     font-size: 0.7rem;
