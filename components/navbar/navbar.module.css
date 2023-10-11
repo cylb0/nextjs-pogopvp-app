@@ -2,10 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #b00f0f;
+    background-color: #04b0ee;
     padding: 0 3rem;
     width: 100%;
     box-sizing: border-box;
+    border-bottom: 2px solid white;
 }
 .list {
     display: flex;
