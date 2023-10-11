@@ -11,11 +11,14 @@ export default function Evolutions({ pokemon }) {
     return (
         <div className={style.container}>
 
-            <Image
-                src={'/images/dna.png'}
-                width={40}
-                height={40}
-                alt={'DNA icon'} />
+            {
+                evolutions && evolutions.length > 1 && 
+                    <Image
+                    src={'/images/dna.png'}
+                    width={40}
+                    height={40}
+                    alt={'DNA icon'} />
+            }
 
             {
                 evolutions && evolutions.length > 1 && evolutions.map((evolution, index) => (
