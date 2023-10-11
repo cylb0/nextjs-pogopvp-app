@@ -6,14 +6,17 @@ export default function LeagueSelect({ handleLeagueSelect, maxCp }) {
 
     const leagues = {
         "Great league": {
+            "short": "GL",
             "max_cp": 1500,
             "icon_url": "/images/great.png"
         },
         "Ultra league": {
+            "short": "UL",
             "max_cp": 2500,
             "icon_url": "/images/ultra.png"
         },
         "Master league": {
+            "short": "ML",
             "max_cp": 9999,
             "icon_url": "/images/master.png"
         }
@@ -33,7 +36,8 @@ export default function LeagueSelect({ handleLeagueSelect, maxCp }) {
                             height={25}
                             alt={`${league} icon`}
                             />
-                        <span>{league}</span>
+                        <span className={style.desktopOnly}>{league}</span>
+                        <span className={style.mobileOnly}>{leagues[league].short}</span>
                     </button>
                 ))
             }

@@ -17,3 +17,8 @@
     background-color: #070753;
     border-collapse: collapse;
 }
+@media (max-width: 768px) {
+    .desktopOnly {
+        display: none;
+    }
+}

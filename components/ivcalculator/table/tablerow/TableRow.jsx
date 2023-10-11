@@ -10,7 +10,7 @@ export default function TableRow({ data }) {
             <td>{ data.atk }</td>
             <td>{ data.def }</td>
             <td>{ data.sta }</td>
-            <td>{ data.prod }</td>
+            <td className={style.desktopOnly}>{ data.prod }</td>
         </tr>
     )
 }

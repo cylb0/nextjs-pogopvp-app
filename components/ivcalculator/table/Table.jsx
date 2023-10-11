@@ -105,7 +105,7 @@ export default function Table({ attack, defense, stamina, maxCp }) {
                         <th>ATK</th>
                         <th>DEF</th>
                         <th>STA</th>
-                        <th>Prod</th>
+                        <th className={style.desktopOnly}>Prod</th>
                     </tr>
                 </thead>
                 <tbody>

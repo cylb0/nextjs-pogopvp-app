@@ -20,3 +20,16 @@
     height: 1px;
     background: linear-gradient(to right, transparent, white, transparent);
 }
+.desktopOnly {
+    display: none;
+}
+@media (min-width: 768px) {
+    .desktopOnly {
+        display: block;
+    }
+}
+@media (max-width: 768px) {
+    .pokemonName {
+        font-size: 1.2rem;
+    }
+}

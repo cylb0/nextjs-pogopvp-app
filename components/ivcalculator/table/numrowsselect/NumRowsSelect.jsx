@@ -3,7 +3,7 @@ import style from './numrowsselect.module.css'
 
 export default function NumRowsSelect({ numRows, maxRows, handleNumRowsChange }) {
 
-    const buttonValues = [10, 25, 50, 100, maxRows]
+    const buttonValues = [10, 25, 100, maxRows]
 
     const handleChange = (value) => {
         handleNumRowsChange(value)

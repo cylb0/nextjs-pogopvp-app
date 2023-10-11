@@ -4,3 +4,8 @@
 .selected {
     background-color: green;
 }
+@media (max-width: 768px) {
+    .desktopOnly {
+        display: none;
+    }
+}

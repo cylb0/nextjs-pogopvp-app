@@ -21,34 +21,39 @@ export default function Evolutions({ pokemon }) {
             }
 
             {
-                evolutions && evolutions.length > 1 && evolutions.map((evolution, index) => (
-                    <div key={index} style={{ display: 'flex', alignItems: 'center'}}>
-                        <Link
-                            key={index}
-                            href={buildPokemonLinkURL(evolution)}
-                            style={{ marginLeft: '1rem' }} >
-                            <div className={style.link}>
-                                <Image 
-                                    src={buildSpriteURL(evolution)}
-                                    width={50}
-                                    height={50}
-                                    alt={`Picture of ${pokemon.pokemon_name}`}
-                                    unoptimized={true}
-                                    priority={true}
-                                    onError={(e) => {
-                                        e.target.src = "/images/missingno.png"
-                                    }}
-                                    style={{ 
-                                        width: '50px', 
-                                        height: '50px', 
-                                        objectFit: 'cover',
-                                        filter: comparePokemons(pokemon, evolution) ? 'grayscale(100%)' : 'none', 
-                                    }}
-                                />
-                            </div>
-                        </Link>
+                evolutions && evolutions.length > 1 && 
+                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                        {
+                            evolutions.map((evolution, index) => (
+                                <div key={index} style={{ display: 'flex', alignItems: 'center', marginTop: '0.5rem'}}>
+                                    <Link
+                                        key={index}
+                                        href={buildPokemonLinkURL(evolution)}
+                                        style={{ marginLeft: '1rem' }} >
+                                        <div className={style.link}>
+                                            <Image 
+                                                src={buildSpriteURL(evolution)}
+                                                width={50}
+                                                height={50}
+                                                alt={`Picture of ${pokemon.pokemon_name}`}
+                                                unoptimized={true}
+                                                priority={true}
+                                                onError={(e) => {
+                                                    e.target.src = "/images/missingno.png"
+                                                }}
+                                                style={{ 
+                                                    width: '50px', 
+                                                    height: '50px', 
+                                                    objectFit: 'cover',
+                                                    filter: comparePokemons(pokemon, evolution) ? 'grayscale(100%)' : 'none', 
+                                                }}
+                                            />
+                                        </div>
+                                    </Link>
+                                </div>
+                            ))
+                        }
                     </div>
-                ))
             }
         </div>
     )

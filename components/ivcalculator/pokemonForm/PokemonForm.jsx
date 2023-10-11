@@ -15,7 +15,7 @@ export default function PokemonForm({ pokemon }) {
     
     return (
         <div className={style.form}>
-            <div style={{ width: '100px', height: '100px', display: 'flex', justifyContent: 'center' }}>
+            <div className={style.desktopOnly}>
                 <Image 
                     src={buildSpriteURL(pokemon)}
                     width={100}
@@ -26,12 +26,11 @@ export default function PokemonForm({ pokemon }) {
                     onError={(e) => {
                         e.target.src = "/images/missingno.png"
                     }}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    style={{ width: '100px', height: '100px', objectFit: 'contain' }} />
             </div>
             <div className={style.data}>
-                <p>Selected Pokemon</p>
                 <div style={{ display:'flex', justifyContent: 'space-between',alignItems:'center', gap:'1rem' }}>
-                    <h1>
+                    <h1 className={style.pokemonName}>
                         <span>#{ pokemon.pokemon_id } </span>
                         <span>{ pokemon.mega_name ? pokemon.mega_name : pokemon.pokemon_name }</span>
                     </h1>
