@@ -14,10 +14,9 @@ export default function Navbar() {
                     priority = {true}
                 />
             </Link>
-            <ul className = { styles.list }>
+            {/* <ul className = { styles.list }>
                 <li><Link href="/">PVP ivs</Link></li>
-                <li>About</li>
-            </ul>
+            </ul> */}
         </nav>
     )
 }
