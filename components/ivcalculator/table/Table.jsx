@@ -114,8 +114,20 @@ export default function Table({ attack, defense, stamina, maxCp }) {
                             tableRows.map((row) => {
                                 const [aIv, dIv, sIv] = row.ivs.split('/')
                                 if (attackIv == aIv && defenseIv == dIv && staminaIv == sIv) {
+                                    let rankPercentage = (row.rank * 100) / tableRows.length
+                                    let backgroundColorClass = 'red'
+                                    if (row.rank === 1) {
+                                        backgroundColorClass = 'goat'
+                                    } else if (rankPercentage <= 5) {
+                                        backgroundColorClass = 'green'
+                                    } else if (rankPercentage <= 20) {
+                                        backgroundColorClass = 'yellow'
+                                    }
                                     return (
-                                        <TableRow key={'selected'} data={{...row, selected: true}} />
+                                        <TableRow 
+                                            key={'selected'}
+                                            data={{...row, selected: true}}
+                                            backgroundColorClass={backgroundColorClass} />
                                     )
                                 }
                                 return null

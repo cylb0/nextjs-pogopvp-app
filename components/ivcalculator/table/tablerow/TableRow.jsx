@@ -1,8 +1,8 @@
 import style from './tablerow.module.css'
 
-export default function TableRow({ data }) {
+export default function TableRow({ data, backgroundColorClass }) {
     return (
-        <tr className={`${style.tr} ${data.selected ? style.selected : ''}`}>
+        <tr className={`${style.tr} ${data.selected ? style.selected : ''} ${style[backgroundColorClass]}`}>
             <td>{ data.rank }</td>
             <td>{ data.ivs }</td>
             <td>{ data.level }</td>
