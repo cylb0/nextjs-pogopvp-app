@@ -8,8 +8,6 @@ export default function Footer() {
                 <div className={ style. mention }>
                     <p>DNA icon made by <a href="https://www.flaticon.com/authors/maan-icons">maan-icons</a> from <a href="www.flaticon.com">www.flaticon.com</a></p>
                     <p>Pokedex icon made by <a href="https://www.flaticon.com/fr/auteurs/roundicons-freebies">Roundicons Freebies</a> from <a href="www.flaticon.com">www.flaticon.com</a></p>
-                    <p>Data from <a href="https://pogoapi.net/">pogoapi.net</a></p>
-                    <p>Using Sprites from <a href="https://github.com/PokeMiners/pogo_assets">pogo_assets</a> Github repository</p>
                 </div>
             </footer>
     )
