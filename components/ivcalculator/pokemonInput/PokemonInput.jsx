@@ -3,20 +3,10 @@ import Link from 'next/link'
 import style from './pokemonInput.module.css'
 import { buildPokemonLinkURL } from "../../../services/pokemonMiscellaneous"
 
-export default function PokemonInput({ pokemons, colors }) {
-    
-    console.log(colors)
-    console.log(pokemons)
+export default function PokemonInput({ pokemons, forms, colors }) {
 
     const [filteredList, setFilteredList] = useState(pokemons)
     const [inputText, setInputText] = useState("")
-
-    const forms = {
-        'Alola': 'Alolan form',
-        'Galarian': 'Galarian form',
-        'Hisuian': 'Hisuian form',
-        'Normal': ''
-    }
 
     const handleChange = (event) => {
         setInputText(event.target.value)
@@ -80,7 +70,7 @@ export default function PokemonInput({ pokemons, colors }) {
                                 {
                                     pokemon.mega_name ? 
                                     '' :
-                                        pokemon.form !== 'Normal' && ' ' + forms[pokemon.form]
+                                        pokemon.form !== 'Normal' && forms[pokemon.form] ? ' ' + forms[pokemon.form] : ''
                                 }
                             </span>
                         </Link>

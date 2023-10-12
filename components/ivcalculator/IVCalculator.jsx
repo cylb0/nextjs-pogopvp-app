@@ -15,7 +15,18 @@ export default function IVCalculator() {
     const [megas, setMegas] = useState(null)
     const [maxCp, setMaxCp] = useState(null)
 
-    const forms = ['Normal', 'Alola', 'Galarian', 'Hisuian']
+    // const forms = ['Normal', 'Alola', 'Galarian', 'Hisuian', 'Small', 'Average', 'Large', 'Super']
+    const forms = {
+        'Alola': 'Alolan form',
+        'Galarian': 'Galarian form',
+        'Hisuian': 'Hisuian form',
+        'Normal': '',
+        'Average': 'Average form',
+        'Large': 'Large form',
+        'Small': 'Small form',
+        'Super': 'Super form'
+    }
+
     const typeColors = {
         Bug: "#aec92c",
         Dark: "#6e7681",
@@ -112,7 +123,7 @@ export default function IVCalculator() {
     }
 
     const filterPokemons = (pokemons) => {
-        return pokemons.filter((pokemon) => forms.includes(pokemon.form))
+        return pokemons.filter((pokemon) => Object.keys(forms).includes(pokemon.form))
     }
 
     const handleLeagueSelect = (maxCp) => {
@@ -138,7 +149,7 @@ export default function IVCalculator() {
                             <>
                                 <h1 className={style.title}>PVP IV ranking</h1>
                                 <PokemonInput
-                                    // pokemons={pokemons.concat(megas)}
+                                    forms={forms}
                                     pokemons={pokemons.map((pokemon) => {
                                         return mergeTypes(pokemon)
                                     }).concat(megas)}
